@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'design/aboutUs.dart';
-import 'design/newCallByContainer.dart';
+import 'design/shelter.dart';
 
 void main() => runApp(new MyApp());
 
