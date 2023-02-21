@@ -180,4 +180,29 @@ class _SchoolWithDataState extends State<SchoolWithData> {
       ),
     );
   }
+  /*
+   //here we can use widget as the as reduce the parameters such as 
+   
+   Widget ContainerCustome(dynamic Height , dynamic Width , int index , String dataRecive)
+   {
+   
+    return Container(
+              height: Height,
+              width: Width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: clr[index],
+              ),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Text(
+                    " ${dataRecive}",
+                    style: TextStyle(fontSize: 25),
+                  ),
+                ),
+              ),
+            ),
+   }
+  
+  */
 }
