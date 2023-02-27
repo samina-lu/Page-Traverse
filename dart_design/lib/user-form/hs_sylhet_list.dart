@@ -4,26 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class GowainghatSchoolNameListShow extends StatefulWidget {
-  const GowainghatSchoolNameListShow({Key? key}) : super(key: key);
+class SylhetSchoolNameListShow extends StatefulWidget {
+  const SylhetSchoolNameListShow({Key? key}) : super(key: key);
 
   @override
-  _GowainghatSchoolNameListShowState createState() =>
-      _GowainghatSchoolNameListShowState();
+  _SylhetSchoolNameListShowState createState() =>
+      _SylhetSchoolNameListShowState();
 }
 
-class _GowainghatSchoolNameListShowState
-    extends State<GowainghatSchoolNameListShow> {
+class _SylhetSchoolNameListShowState extends State<SylhetSchoolNameListShow> {
   var st = Get.arguments;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   late List<String> dataArray;
 
+  @override
+  void initState() {
+    super.initState();
+    dataArray = [""];
+    fetchData();
+  }
+
   Future<void> fetchData() async {
-    final CollectionReference collection = firestore.collection('user');
+    final CollectionReference collection = firestore.collection('sadar');
     final QuerySnapshot querySnapshot = await collection.get();
     final List<DocumentSnapshot> documents = querySnapshot.docs;
 
-    final List<String> dataArray = [" "];
+    List<String> dataArray = [" "];
 
     documents.forEach((document) {
       final dynamic data = document.data();
@@ -41,13 +47,6 @@ class _GowainghatSchoolNameListShowState
   }
 
   @override
-  void initState() {
-    super.initState();
-    dataArray = [""];
-    fetchData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -60,17 +59,16 @@ class _GowainghatSchoolNameListShowState
               itemBuilder: (context, index) {
                 final item = dataArray[index];
                 return ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 79, 106, 255),
-                    radius: 30,
-                  ),
                   title: Text(item),
+                  // leading: CircleAvatar(
+                  //   backgroundColor: Color.fromARGB(255, 79, 106, 255),
+                  //   radius: 30,
+                  // ),
                   onTap: () {
                     print("");
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        /// you should  design
                         return Dialog(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
@@ -82,16 +80,14 @@ class _GowainghatSchoolNameListShowState
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    "$item water 500",
-                                    style: const TextStyle(
+                                    "$item",
+                                    style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,
                                     ),
                                   ),
-                                  // ignore: prefer_const_constructors
                                   Text(
                                     "People 150",
-                                    // ignore: prefer_const_constructors
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,
@@ -99,11 +95,25 @@ class _GowainghatSchoolNameListShowState
                                   ),
                                   Text(
                                     "$index",
-                                    // ignore: prefer_const_constructors
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,
                                     ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: 20,
+                                        height: 20,
+                                        color: Colors.red,
+                                      ),
+                                      Container(
+                                        width: 20,
+                                        height: 20,
+                                        color:
+                                            Color.fromARGB(255, 54, 244, 127),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(height: 16.0),
                                   ElevatedButton(
